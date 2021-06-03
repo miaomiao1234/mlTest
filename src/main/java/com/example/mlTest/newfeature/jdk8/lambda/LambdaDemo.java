@@ -1,4 +1,4 @@
-package com.example.mlTest.newfeature.jdk8;
+package com.example.mlTest.newfeature.jdk8.lambda;
 
 /**
  * @author miaoliang
@@ -49,6 +49,9 @@ public class LambdaDemo {
                 System.out.println("匿名内部类测试。。。");
             }
         }.demo();
+
+        Thread t = new Thread(() -> System.out.println("new Thread"));
+        t.start();
 
     }
 
