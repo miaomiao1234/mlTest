@@ -76,6 +76,10 @@ public class Car {
         cars.forEach(car::follow);
 
         names.forEach(System.out::println);
+        System.out.println("..................");
+        cars.forEach(s->{
+            System.out.println(s.getName());
+        });
 
 
     }
