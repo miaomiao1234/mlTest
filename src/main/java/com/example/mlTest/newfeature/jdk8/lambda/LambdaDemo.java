@@ -52,6 +52,13 @@ public class LambdaDemo {
 
         Thread t = new Thread(() -> System.out.println("new Thread"));
         t.start();
+        // 原始方法
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("new Thread");
+            }
+        }).start();
 
     }
 
