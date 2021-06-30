@@ -1,8 +1,5 @@
 package com.example.mlTest.designpatterns.proxy.jdk.custom;
 
-import jdk.internal.reflect.CallerSensitive;
-import jdk.internal.reflect.Reflection;
-
 import javax.tools.JavaCompiler;
 import javax.tools.JavaFileObject;
 import javax.tools.StandardJavaFileManager;
