@@ -11,13 +11,15 @@ import org.springframework.stereotype.Component;
  * @author miaoliang
  * @since 6/30/21 5:03 PM
  */
-@Aspect
-@Component
+@Aspect  // 这个类被声明是被动态织入到 虚拟切面中的类
+@Component // 声明这个类是被SpringIOC容器管理的
 public class LogAspect {
 
     private final static Logger log = LoggerFactory.getLogger(LogAspect.class);
 
-    @Pointcut("execution(* com.example.mlTest.springresource.aop.service.*.*(..))")
+//    @Pointcut("execution(* com.example.mlTest.springresource.aop.service.*.*(..))")  //声明切点--利用反射读取切面中所有的注解信息
+    // pubic（可省略），返回值类型，包路径，类，方法名，（参数），throws异常类型（可省略）
+    @Pointcut("execution(* com.example.mlTest.springresource.aop.service..*(..))")  //声明切点--利用反射读取切面中所有的注解信息(..目录所有的层级)
     public void LogAspect(){}
 
     @Before("LogAspect()")
