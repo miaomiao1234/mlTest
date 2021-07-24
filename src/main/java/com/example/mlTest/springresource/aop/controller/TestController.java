@@ -17,6 +17,11 @@ public class TestController {
     @Autowired
     private MemberManagerService memberManagerService;
 
+    @RequestMapping("test")
+    public Object test(String param){
+        return "param";
+    }
+
     @RequestMapping("add")
     public Object add(){
         return memberManagerService.add(new Member());

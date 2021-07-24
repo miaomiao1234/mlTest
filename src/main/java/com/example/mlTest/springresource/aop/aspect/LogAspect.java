@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+
 /**
  * @author miaoliang
  * @since 6/30/21 5:03 PM
@@ -19,7 +21,8 @@ public class LogAspect {
 
 //    @Pointcut("execution(* com.example.mlTest.springresource.aop.service.*.*(..))")  //声明切点--利用反射读取切面中所有的注解信息
     // pubic（可省略），返回值类型，包路径，类，方法名，（参数），throws异常类型（可省略）
-    @Pointcut("execution(* com.example.mlTest.springresource.aop.service..*(..))")  //声明切点--利用反射读取切面中所有的注解信息(..目录所有的层级)
+//    @Pointcut("execution(* com.example.mlTest.springresource.aop.service..*(..))")  //声明切点--利用反射读取切面中所有的注解信息(..目录所有的层级)
+    @Pointcut("execution(* com.example.mlTest.springresource.aop.controller..*(..))")  //声明切点--利用反射读取切面中所有的注解信息(..目录所有的层级)
     public void LogAspect(){}
 
     @Before("LogAspect()")
@@ -36,8 +39,9 @@ public class LogAspect {
         log.error("方法 异常之后" + joinPoint);
     }
 
-    @AfterReturning("LogAspect()")
-    public void doAfterReturning(JoinPoint joinPoint){
+    @AfterReturning(value = "LogAspect()",  returning = "returningValue")
+    public void doAfterReturning(JoinPoint joinPoint,  Object returningValue){
+        System.out.println("==============="+returningValue+"==============");
         log.error("doAfterReturning");
     }
 
@@ -46,9 +50,11 @@ public class LogAspect {
         log.error("deAfterThrowing");
     }
 
-    @Around("LogAspect()")
+    @Around("LogAspect()" )
     public Object deAround(ProceedingJoinPoint joinPoint) throws Throwable{
         log.error("deAround");
+        Object[] args = joinPoint.getArgs();
+        Arrays.asList(args).forEach(System.out::println);
         return joinPoint.proceed();
     }
 

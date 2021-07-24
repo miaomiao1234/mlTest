@@ -37,7 +37,7 @@ public class ML implements Person{
     }
 
     @Override
-    public void getCompanion() {
+    public final void getCompanion() {
         System.out.println("My name is "+ this.name + ",sex is " +this.sex+ ",wish companion:");
         System.out.println("is a girl");
         System.out.println("sexy body");
